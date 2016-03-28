@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <time.h>
 #define LEN 20
+#define MAX 100
 
 
 void InsSort(int num[],int length);
@@ -13,6 +14,7 @@ void QuickSort(int num[],int length);
 void HeapSort(int num[],int length);
 void ShellSort(int num[], int length);
 void CountSort(int num[],int length);
+void RadixSort(int num[],int length);
 
 int main()
 {
@@ -23,7 +25,7 @@ int main()
     printf("生成%d个随机数.\n排序前为:",LEN);
     for(i=0; i<LEN; i++)
     {
-        num[i]=rand()%100;
+        num[i]=rand()%MAX;
         cpy[i] = num[i];
         printf("%d ",num[i]);
     }
@@ -130,6 +132,19 @@ int main()
         num[i] = cpy[i];
     }
     printf("\n使用计数排序运行了%ldms\n",runtime);
+
+    //基数排序
+    dwStart=GetTickCount();
+    RadixSort(num,LEN);
+    dwStop=GetTickCount();
+    runtime=dwStop-dwStart;
+    printf("\n基数排序:");
+    for(i=0; i<LEN; i++)
+    {
+        printf("%d ",num[i]);
+        num[i] = cpy[i];
+    }
+    printf("\n使用基数排序运行了%ldms\n",runtime);
 
     return 1;
 }

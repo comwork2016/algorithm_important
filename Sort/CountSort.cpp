@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int GetMax(int num[],int length);
-
 void CountSort(int num[],int length)
 {
     int max = num[0];
@@ -21,7 +19,7 @@ void CountSort(int num[],int length)
     // 初始化数组
     for(int i=0; i<max+1; i++)
     {
-        countArr[i] = -1;
+        countArr[i] = 0;
     }
     for(int i=0; i<length; i++)
     {
@@ -32,7 +30,7 @@ void CountSort(int num[],int length)
             countArr = (int*)realloc(countArr,sizeof(int)*(max+1));
             for(int j=oldmax+1; j<max+1; j++)
             {
-                countArr[j] = -1;
+                countArr[j] = 0;
             }
         }
         countArr[num[i]]++;
@@ -41,7 +39,7 @@ void CountSort(int num[],int length)
     for(int i=0;i<max+1;i++)
     {
         int count = countArr[i];
-        while(count>=0)
+        while(count>0)
         {
             num[k] = i;
             count--;
